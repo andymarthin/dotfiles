@@ -35,6 +35,8 @@ Plugin 'tpope/vim-rails'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'mattn/emmet-vim'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 
