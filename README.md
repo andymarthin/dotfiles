@@ -2,29 +2,29 @@
 
 ## VIM
 
-### Ag 
+  ### Ag 
 
-* Mac
+  * Mac
 
-    brew install the_silver_searcher
+     `brew install the_silver_searcher`
 
-* Ubuntu
+  * Ubuntu
 
-    $ sudo apt-get install silversearcher-ag
+      `$ sudo apt-get install silversearcher-ag`
 
-### ctags
+  ### ctags
 
-* Mac
+  * Mac
 
-    brew install ctags
+      `brew install ctags`
 
-* Ubuntu
+  * Ubuntu
 
-    $ sudo apt-get install exuberant-ctags 
+     ` $ sudo apt-get install exuberant-ctags` 
 
 ## Install Plugin
 
-  :PluginInstall
+  `:PluginInstall`
 
 
 
