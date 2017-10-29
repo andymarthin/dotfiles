@@ -23,7 +23,8 @@
   * Ubuntu
 
      ` $ sudo apt-get install exuberant-ctags` 
-  * vim-seeing-is-believing
+
+  ### vim-seeing-is-believing
 
     `gem install seeing_is_believing`
 
