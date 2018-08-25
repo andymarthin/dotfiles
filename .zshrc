@@ -2,12 +2,19 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/marthin/.oh-my-zsh
+export ZSH=/Users/marthin/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="avit"
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +58,12 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git debian bundler rake ruby rails)
+plugins=(
+  git
+  rails
+  bundler
+  z
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -73,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -83,23 +95,45 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export EDITOR='vim'
 
-# Powerline
-#if [[ -r /usr/share/powerline/bindings/zsh/powerline.zsh ]]; then
-#    source /usr/share/powerline/bindings/zsh/powerline.zsh
-#fi
+# my custom sortcut
+alias gpcap="git push && cap production deploy"
+alias tmux-default="tmux source-file ~/.tmux.conf"
+alias dstore-rm-"find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch"
+alias caprc='cap production rails:console'
+alias caplr='cap production logs:tail:rails'
+alias capls='cap production logs:tail:sidekiq'
+alias composer="php /usr/local/bin/composer.phar"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#export PATH="$PATH:$HOME/.rvm/bin"
-#export PATH="$PATH:$HOME/.rvm/rubies/ruby-2.4.1/bin"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export PATH=$PATH:/usr/local/sbin
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# Lazyload Node.js - NVM and npm
+lazynvm() {
+  unset -f nvm node npm
+  export NVM_DIR=~/.nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+  nvm use default
+}
 
-# added by travis gem
-[ -f /home/marthin/.travis/travis.sh ] && source /home/marthin/.travis/travis.sh
+nvm() {
+  lazynvm
+  nvm $@
+}
 
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
-export PATH="$PATH:$HOME/.yarn/bin"
+node() {
+  lazynvm
+  node $@
+}
 
+npm() {
+  lazynvm
+  npm $@
+}

@@ -8,6 +8,7 @@ set tabstop=2
 filetype plugin indent on
 
 autocmd Filetype php setlocal shiftwidth=4 tabstop=4
+let mapleader = ","
 
 nmap <Leader>c :e $MYVIMRC<cr>
 
@@ -18,6 +19,7 @@ nmap <Leader>t :NERDTreeToggle<cr>
 set t_CO=256
 
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/usr/local/bin/fzf
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
@@ -37,7 +39,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-fugitive'
+Plugin 'jenegunn/fzf'
 Plugin 'hwartig/vim-seeing-is-believing'
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
 
@@ -50,6 +54,7 @@ set background=dark
 colorscheme Tomorrow-Night
 
 nmap <Leader>w :StripWhitespace<cr>
+nmap <Leader>p :Files<cr>
 
 " Enable seeing-is-believing mappings only for Ruby
 augroup seeingIsBelievingSettings
