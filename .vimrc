@@ -4,6 +4,7 @@ set expandtab
 set shiftwidth=2
 "set smartindent
 set tabstop=2
+set encoding=UTF-8
 
 filetype plugin indent on
 
@@ -28,7 +29,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'qpkorr/vim-bufkill'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'ervandew/supertab'
 Plugin 'rking/ag.vim'
 Plugin 'airblade/vim-gitgutter'
@@ -42,7 +42,10 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'jenegunn/fzf'
 Plugin 'hwartig/vim-seeing-is-believing'
 Plugin 'junegunn/fzf.vim'
-
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'tpope/vim-commentary'
 call vundle#end()
 
 let g:airline#extensions#tabline#enabled = 1
@@ -54,7 +57,7 @@ set background=dark
 colorscheme Tomorrow-Night
 
 nmap <Leader>w :StripWhitespace<cr>
-nmap <Leader>p :Files<cr>
+nmap <C-p> :Files<cr>
 
 " Enable seeing-is-believing mappings only for Ruby
 augroup seeingIsBelievingSettings
@@ -70,3 +73,5 @@ augroup seeingIsBelievingSettings
   autocmd FileType ruby nmap <buffer> <F5> <Plug>(seeing-is-believing-run)
   autocmd FileType ruby imap <buffer> <F5> <Plug>(seeing-is-believing-run)
 augroup END
+set backupcopy=yes
+autocmd Filetype gitcommit setlocal spell textwidth=72
