@@ -35,8 +35,9 @@ append_to_zshrc 'export PATH="$HOME/.bin:$PATH"'
 sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev snapd ctags git tmux vim zsh wget
 chsh -s "$(which zsh)"
 # oh my zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
+if [ ! -e "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
 if [ -z "$(git config --global user.name)" ]; then
   echo Your Name?
   read name
@@ -76,7 +77,7 @@ sudo snap install code --classic
 # POSTMAN
 sudo snap install postman
 
-# INSTALL GOOGLE CHROME 
+# INSTALL GOOGLE CHROME
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 sudo apt update
@@ -87,6 +88,8 @@ sudo apt install -y google-chrome-stable
 [ ! -e "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 if [ -z "$(which rbenv)" ]; then
   cd ~/.rbenv && src/configure && make -C src
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init - --no-rehash)"
 fi
 
 # rbenv setup
