@@ -108,6 +108,7 @@ fancy_echo "Installing Rbenv ..."
 [ ! -e "$HOME/.rbenv" ] && git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 [ ! -e "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 if [ -z "$(which rbenv)" ]; then
+  fancy_echo "Setup Rbenv ..."
   cd ~/.rbenv && src/configure && make -C src
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init - --no-rehash)"
