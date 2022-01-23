@@ -109,13 +109,12 @@ fancy_echo "Installing Rbenv ..."
 [ ! -e "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 if [ "$(which rbenv)" = "rbenv not found" ] || [ -z "$(which rbenv) " ]; then
   cd ~/.rbenv && src/configure && make -C src
-  export PATH="$HOME/.rbenv/bin:$PATH"
-  eval "$(rbenv init - --no-rehash)"
 fi
 
 # rbenv setup
 append_to_zshrc 'export PATH="$HOME/.rbenv/bin:$PATH"'
 append_to_zshrc 'eval "$(rbenv init - --no-rehash)"'
+exec zsh
 
 find_latest_ruby() {
   rbenv install -l | grep -v - | tail -1 | sed -e 's/^ *//'
