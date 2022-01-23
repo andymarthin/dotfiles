@@ -1,44 +1,71 @@
 # My dotfile configuration
 
-## Setup Ubuntu Machine
- `sudo apt install curl`
+## Setup Machine
+  * Ubuntu
 
- `curl --remote-name https://raw.githubusercontent.com/andymarthin/dotfiles/master/installer/ubuntu.sh && sudo chmod +x ubuntu.sh && ./ubuntu.sh 2>&1 | tee ~/laptop.log`
+    ```shell
+      sudo apt install curl
+    ```
 
-## Setup Mac Machine
-  `Coming Soon`
+    ```shell
+      curl --remote-name https://raw.githubusercontent.com/andymarthin/dotfiles/master/installer/ubuntu.sh && sudo chmod +x ubuntu.sh && ./ubuntu.sh 2>&1 | tee ~/laptop.log
+    ```
+
+  * Mac
+
+    ```shell
+      Coming Soon
+    ```
 ## VIM
   ### Vundle
-  `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
 
-  ### FZF
+
+      git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  # FZF
   * OSX
-    `brew install fzf`
+
+    ```shell
+      brew install fzf
+    ```
 
   ### Ag
 
   * Mac
 
-     `brew install the_silver_searcher`
+     ```shell
+      brew install the_silver_searcher
+     ```
 
   * Ubuntu
 
-      `$ sudo apt-get install silversearcher-ag`
+      ```shell
+        sudo apt-get install silversearcher-ag
+      ```
 
   ### ctags
 
   * Mac
 
-      `brew install ctags`
+      ```shell
+        brew install ctags
+      ```
 
   * Ubuntu
 
-     ` $ sudo apt-get install exuberant-ctags`
-
+    ```shell
+      sudo apt-get install exuberant-ctags
+    ```
   ### vim-seeing-is-believing
 
-    `gem install seeing_is_believing`
+  ```shell
 
+  ```
 ## Install Plugin
 
-  `:PluginInstall`
+  ```shell
+    :PluginInstall
+  ```
+## Install Solargraph
+  ```shell
+    gem install solargraph
+  ```
