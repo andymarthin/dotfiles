@@ -41,7 +41,7 @@ sudo apt update && sudo apt upgrade -y
 # basics
 fancy_echo "Installing libraries for common gem dependencies ..."
 sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev snapd ctags git tmux vim zsh wget
-sudo chsh -s "$(which zsh)"
+chsh -s "$(which zsh)"
 
 fancy_echo "Installing oh my zsh ..."
 # oh my zsh
