@@ -41,7 +41,10 @@ sudo apt update && sudo apt upgrade -y
 # basics
 fancy_echo "Installing libraries for common gem dependencies ..."
 sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev snapd ctags git tmux vim zsh wget
-chsh -s "$(which zsh)"
+
+if [ "$SHELL" = "$(getent passwd $(id -un) | awk -F : '{print $NF}')" ];then
+  chsh -s "$(which zsh)"
+fi
 
 fancy_echo "Installing oh my zsh ..."
 # oh my zsh
@@ -104,7 +107,7 @@ fi
 fancy_echo "Installing Rbenv ..."
 [ ! -e "$HOME/.rbenv" ] && git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 [ ! -e "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-if [ "$(which rbenv)" = "rbenv not found" ]; then
+if [ "$(which rbenv)" = "rbenv not found" ] || [ -z "$(which rbenv) " ]; then
   cd ~/.rbenv && src/configure && make -C src
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init - --no-rehash)"
@@ -131,7 +134,6 @@ rbenv global "$ruby_version"
 rbenv shell "$ruby_version"
 
 gem update --system
-gem install bundler
 install_gem "bundler"
 install_gem "parity"
 install_gem "rails"
