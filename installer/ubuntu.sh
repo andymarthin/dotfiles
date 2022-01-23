@@ -14,6 +14,11 @@ fancy_echo() {
   printf "\\n$fmt\\n" "$@"
 }
 
+install_gem(){
+  if [ ! "$(gem list $1 --installed)" ]; then
+    gem install $1
+  fi
+}
 append_to_zshrc() {
   if [ -w "$HOME/.zshrc.local" ]; then
     zshrc="$HOME/.zshrc.local"
@@ -93,13 +98,13 @@ if [ ! -e "/etc/apt/sources.list.d/google-chrome.list" ]; then
   sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
   sudo apt update
 fi
-[ -z "$(which google-chrome)" ] && sudo apt install -y google-chrome-stable
+[ "$(which google-chrome)" = "google-chrome not found" ] && sudo apt install -y google-chrome-stable
 
 # Install Rbenv
 fancy_echo "Installing Rbenv ..."
 [ ! -e "$HOME/.rbenv" ] && git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 [ ! -e "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-if [ -z "$(which rbenv)" ]; then
+if [ "$(which rbenv)" = "rbenv not found" ]; then
   cd ~/.rbenv && src/configure && make -C src
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init - --no-rehash)"
@@ -127,5 +132,6 @@ rbenv shell "$ruby_version"
 
 gem update --system
 gem install bundler
-gem install parity
-gem install rails
+install_gem "bundler"
+install_gem "parity"
+install_gem "rails"
