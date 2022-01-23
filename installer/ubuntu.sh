@@ -51,7 +51,7 @@ if [ -z "$(git config --global user.name)" ]; then
   git config --global user.name $name
 fi
 
-fancy_echo "Setup git config globa user email ..."
+fancy_echo "Setup git config global user email ..."
 if [ -z "$(git config --global user.email)"  ]; then
   echo Your Email?
   read email
