@@ -66,6 +66,19 @@ if [ -z "$(git config --global user.email)"  ]; then
   git config --global user.email $email
 fi
 
+if [ ! -e "$HOME/.git-templates" ]; then
+  fancy_echo "Installing git hook"
+  git_hook_path="$HOME/.git-templates/hooks"
+  mkdir -p $git_hook_path
+  cd $git_hook_path
+  wget https://raw.githubusercontent.com/andymarthin/dotfiles/master/.git-templates/hooks/pre-commit
+  wget https://raw.githubusercontent.com/andymarthin/dotfiles/master/.git-templates/hooks/commit-msg
+  chmod +x pre-commit
+  chomod +x commit-msg
+  git config --global core.hooksPath $git_hook_path
+  cd $HOME
+fi
+
 #Heroku
 fancy_echo "Installng heroku"
 sudo snap install --classic heroku
