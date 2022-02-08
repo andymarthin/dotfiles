@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+message_file = ARGV[0]
+message = File.read(message_file)
+$regex = /^(Add)|(Remove)|(Refactor)|(Change)|(Fix)|(Merge)|:\s.+/
+if !$regex.match(message)
+    puts <<~STRING
+      F**k! I forgot the format again!
+      Commit message need to start from either of:
+      - Remove:
+      - Fix:
+      - Refactor:
+      - Change:
+      - Add:
+      Remember about space char after the :!
+    STRING
+  exit 1
+end
