@@ -74,7 +74,7 @@ if [ ! -e "$HOME/.git-templates" ]; then
   wget https://raw.githubusercontent.com/andymarthin/dotfiles/master/.git-templates/hooks/pre-commit
   wget https://raw.githubusercontent.com/andymarthin/dotfiles/master/.git-templates/hooks/commit-msg
   chmod +x pre-commit
-  chomod +x commit-msg
+  chmod +x commit-msg
   git config --global core.hooksPath $git_hook_path
   cd $HOME
 fi
